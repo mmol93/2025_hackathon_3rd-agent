@@ -1,18 +1,17 @@
-[project]
+[tool.poetry]
 name = "2025-hackathon-3rd-agent"
 version = "0.1.0"
-description = ""
-authors = [
-    {name = "Your Name",email = "you@example.com"}
-]
-readme = "README.md"
-requires-python = ">=3.12"
-dependencies = [
-    "google-cloud-aiplatform[agent-engines,langgraph] (>=1.108.0,<2.0.0)",
-    "python-dotenv (>=1.1.1,<2.0.0)"
+description = "베이비시터 AI 에이전트 - Google Cloud Hackathon 3rd"
+authors = ["Your Name <you@example.com>"]
+packages = [
+    { include = "babysitter_agent" },
 ]
 
+[tool.poetry.dependencies]
+python = ">=3.12,<3.14"
+python-dotenv = "^1.1.1"
+google-cloud-aiplatform = {version = "^1.108.0", extras = ["agent_engines", "adk", "langchain", "ag2", "llama_index"]}
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

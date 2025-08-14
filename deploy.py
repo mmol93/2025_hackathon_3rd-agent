@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-"""베이비시터 AI 에이전트 배포 스크립트 - 루트 디렉토리 버전"""
 from babysitter_agent.agent import BabysitterAgent
 
 

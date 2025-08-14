@@ -6,21 +6,19 @@ from vertexai import agent_engines
 
 load_dotenv()
 
-# 1. 환경 변수로 확인 (SDK가 사용하는 기본 값)
 project_from_env = os.getenv("GOOGLE_CLOUD_PROJECT")
-location_from_env = os.getenv("VERTEX_LOCATION")  # 또는 직접 설정한 변수 사용
 
 print(f"환경 변수 기반 프로젝트: {project_from_env}")
-print(f"환경 변수 기반 위치: {location_from_env}")
 
-# 2. gcloud CLI로 현재 설정 확인 (터미널에서 실행되도록)
+# gcloud CLI로 현재 설정 확인
 try:
     project_from_gcloud = subprocess.check_output(["gcloud", "config", "get-value", "project"]).decode().strip()
     print(f"gcloud 기반 프로젝트: {project_from_gcloud}")
+    print("✅ gcloud에서 현재 선택되어있는 프로젝트 확인 완료")
 except Exception as e:
-    print(f"gcloud 확인 에러: {e}")
+    print(f"❌ gcloud 확인 에러: {e}")
 
-# 3. Vertex AI 초기화 (필요 시 재설정)
+# Vertex AI 초기화 (필요 시 재설정)
 vertexai.init(
     project="endless-fire-468401-f8",  # 이전 대화의 프로젝트 ID
     location="us-west1"  # 이전 대화의 위치
@@ -29,7 +27,7 @@ print("✅ Vertex AI 초기화 완료 (설정 값은 위에서 확인하세요)"
 
 try:
     agents = list(agent_engines.list())  # list()로 변환
-    print(f"\n배포된 에이전트 수: {len(agents)}")
+    print(f"\n현재 배포되어 있는 전체 에이전트 수: {len(agents)}")
     if len(agents) == 0:
         print("❌ 여전히 빈 목록입니다. 아래 원인을 확인하세요.")
     else:
